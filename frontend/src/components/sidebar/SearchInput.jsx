@@ -13,7 +13,7 @@ const SearchInput = () => {
 		e.preventDefault();
 		if (!search) return;
 		if (search.length < 3) {
-			return toast.error("Search term must be at least 3 characters long");
+			return toast.error("El término de búsqueda debe tener al menos 3 caracteres.");
 		}
 
 		const conversation = conversations.find((c) => c.fullName.toLowerCase().includes(search.toLowerCase()));
@@ -21,13 +21,13 @@ const SearchInput = () => {
 		if (conversation) {
 			setSelectedConversation(conversation);
 			setSearch("");
-		} else toast.error("No such user found!");
+		} else toast.error("¡No se encontró ningún usuario así!");
 	};
 	return (
 		<form onSubmit={handleSubmit} className='flex items-center gap-2'>
 			<input
 				type='text'
-				placeholder='Search…'
+				placeholder='Buscar......'
 				className='input input-bordered rounded-full'
 				value={search}
 				onChange={(e) => setSearch(e.target.value)}
