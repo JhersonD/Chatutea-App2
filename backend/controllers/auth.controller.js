@@ -13,7 +13,7 @@ export const signup = async (req, res) => {
 		const user = await User.findOne({ username });
 
 		if (user) {
-			return res.status(401).json({ error: "Username already exists" });
+			return res.status(400).json({ error: "Username already exists" });
 		}
 
 		// HASH PASSWORD HERE
@@ -60,7 +60,7 @@ export const login = async (req, res) => {
 		const isPasswordCorrect = await bcrypt.compare(password, user?.password || "");
 
 		if (!user || !isPasswordCorrect) {
-			return res.status(400).json({ error: "Invalid username or password" });
+			return res.status(401).json({ error: "Invalid username or password" });
 		}
 
 		generateTokenAndSetCookie(user._id, res);
